@@ -1,0 +1,38 @@
+<div class="container">
+<div class="klass-page">
+  <div class="klass-title">
+    <h1>Runewords</h1>
+    <h2>{{ runewords.name }}</h2>
+  </div>
+
+  <div>
+    <p class="klass-description">When certain runes are placed in the correct order into socketed items, they can make Runewords.</p>
+  </div>
+
+  <div class="klass-list">
+    <ul class="klass-listing col-md-12">
+      <li class="klass-list-item col-md-offset-1 col-md-5"
+          ng-repeat="runeword in runewords.all['runewords']" >
+          <h5>Runeword name: {{ runeword["name"] }}</h5>
+          <p>Item Types:</p>
+          <ul ng-repeat="item in runeword['item_types']">
+            <li>{{ item.name }}</li>
+          </ul>
+          <div
+            ng-mouseEnter="runewords.selectId(runeword.id)"
+            ng-mouseleave="runewords.clearId()">
+            <h5 ng-hide="runewords.isSelected(runeword.id)">Runeword runes:</h5>
+            <ul ng-hide="runewords.isSelected(runeword.id)" ng-repeat="rune in runeword.runes">
+              <li>{{ rune.name }}</li>
+            </ul>
+            <h5 ng-show="runewords.isSelected(runeword.id)">Runeword properties:</h5>
+            <ul ng-show="runewords.isSelected(runeword.id)" ng-repeat="prop in runeword.properties">
+              <li>{{ prop.name }}</li>
+            </ul>
+          </div>
+          </div>
+      </li>
+    </ul>
+  </div>
+</div>
+</div>
