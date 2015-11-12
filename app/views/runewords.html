@@ -1,26 +1,32 @@
 <div class="container">
 <div class="klass-page">
   <div class="klass-title">
-    <h1>Runewords</h1>
-    <h2>{{ runewords.name }}</h2>
+    <h1>{{ runewords.name }}</h1>
+  </div>
+  <div class="klass-input col-md-12">
+    <h3></h3>
+    <input type="text" value="Search" name="SEARCH!" ng-model="searchText"
+    class="col-md-offset-4 col-md-4">
   </div>
 
+
   <div>
-    <p class="klass-description">When certain runes are placed in the correct order into socketed items, they can make Runewords.</p>
+    <p class="klass-description">When certain runes are placed in the correct order into socketed items, they can make Runewords.
+    <br>Try sorting by your highest level rune.</p>
   </div>
 
   <div class="klass-list">
     <ul class="klass-listing col-md-12">
       <li class="klass-list-item col-md-offset-1 col-md-5"
-          ng-repeat="runeword in runewords.all['runewords']" >
+          ng-repeat="runeword in runewords.all['runewords'] | filter:searchText" >
           <h5>Runeword name: {{ runeword["name"] }}</h5>
           <p>Item Types:</p>
           <ul ng-repeat="item in runeword['item_types']">
             <li>{{ item.name }}</li>
           </ul>
           <div
-            ng-mouseEnter="runewords.selectId(runeword.id)"
-            ng-mouseleave="runewords.clearId()">
+              ng-mouseEnter="runewords.selectId(runeword.id)"
+              ng-mouseleave="runewords.clearId()">
             <h5 ng-hide="runewords.isSelected(runeword.id)">Runeword runes:</h5>
             <ul ng-hide="runewords.isSelected(runeword.id)" ng-repeat="rune in runeword.runes">
               <li>{{ rune.name }}</li>
@@ -30,9 +36,9 @@
               <li>{{ prop.name }}</li>
             </ul>
           </div>
-          </div>
+  </div>
       </li>
     </ul>
-  </div>
+</div>
 </div>
 </div>
