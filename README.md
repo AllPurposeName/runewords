@@ -1,6 +1,6 @@
 # Runewords
 
-[Production Site](http://diablo2runewords.herokuapp.com/api/v1/runewords)
+[Production Site](http://diablo2runewords.herokuapp.com)
 
 ## Objective
 
