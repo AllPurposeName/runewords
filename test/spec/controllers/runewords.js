@@ -50,7 +50,7 @@ describe('Controller: RunewordsCtrl', function () {
     expect(RunewordsCtrl.currentId).toBe(null);
   });
 
-  describe('bagelApiService.query', function() {
+  describe('runewordsApiService.get', function() {
     beforeEach(function() {
       getDeferred.resolve(mockRunewordsResponse);
       scope.$apply();
