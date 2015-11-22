@@ -8,15 +8,24 @@
  * Controller of the runewordsApp
  */
 angular.module('runewordsApp')
-.controller('RunewordsCtrl', ["RunewordsAPI", function (RunewordsAPI, RunesAPI) {
+.controller('RunewordsCtrl', ['RunewordsAPI',
+                              'ItemTypeAPI',
+            function (RunewordsAPI, ItemTypeAPI) {
   var vm = this;
-  vm.name = "Runewords";
+  vm.name = 'Runewords';
   vm.currentId = null;
   vm.all = RunewordsAPI.get();
+  vm.itemTypes = ItemTypeAPI.get();
+  vm.itemType = 'All item types';
+  vm.itemTypeSelect = '';
+
+  vm.setItemType = function(type) {
+    vm.itemType = type;
+  };
 
   vm.isSelected = function(id) {
     return vm.currentId === id;
-  }
+  };
 
   vm.selectId = function(id) {
     return vm.currentId = id;
@@ -25,4 +34,5 @@ angular.module('runewordsApp')
   vm.clearId = function() {
     return vm.currentId = null;
   };
+
 }]);
