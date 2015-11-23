@@ -42,13 +42,16 @@
 
            <label for="property-checkbox" >
              Select properties:
-             <input name="property-checkbox"
-                    id="property-checkbox"
-                    type="checkbox"
-                    ng-model='runewords.categories'
-                    ng-repeat="property in runewords.properties['properties']
-                    | uniqueFilter:'category'"
-                    inverted />
+             <div ng-model='runewords.categories'
+                  ng-repeat="property in runewords.properties['properties']
+                  | unique: 'group'" >
+               <input name="property-checkbox"
+                      id="property-checkbox"
+                      value="{{property.group}}"
+                      type="checkbox"
+                      inverted />
+               {{ property.group | ucfirst }}
+             </div>
            </label>
       </div>
     </div>
