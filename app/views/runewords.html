@@ -3,58 +3,103 @@
   <div class="klass-title">
     <h1>{{ runewords.name }}</h1>
   </div>
-  <div class="klass-input col-md-12">
+  <div class="klass-body col-md-12">
 
-    <div class="item-type-dropdown col-md-offset-1 col-md-5">
-      <div class="dropdown">
-        <label for="itemTypeBox">Sort by item types: </label>
-        <select name="itemTypeBox" id="itemTypeBox" size="1"
-                                                    ng-model="runewords.itemTypeSelect">
-          <option value="">
-          All item types
-          <option ng-repeat="itemType in runewords.itemTypes['item_types']"
-                  value="{{ itemType.name }}">
-          {{ itemType.name }}
-          </option>
-        </select>
+    <div class="klass-filtering">
+
+      <div class="item-type-dropdown col-md-offset-1 col-md-5">
+        <div class="dropdown">
+          <label for="item-type-box">
+            Sort by item types:
+            <select name="item-type-box"
+                    id="item-type-box"
+                    size="1"
+                    ng-model="runewords.itemTypeSelect">
+              <option value="">
+              All item types
+              </option>
+              <option ng-repeat="itemType in runewords.itemTypes['item_types']"
+                      value="{{ itemType.name }}">
+              {{ itemType.name }}
+              </option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div class="search-box col-md-offset-1 col-md-5">
+        <label for="Search">
+          Search:
+          <input type="text"
+                 value="Search"
+                 name="Search"
+                 ng-model="searchText">
+        </label>
+      </div>
+
+      <div class="property-category-checkboxes col-md-offset-1 col-md-5"
+           >
+
+           <label for="property-checkbox" >
+             Select properties:
+             <div ng-model='runewords.categories'
+                  ng-repeat="property in runewords.properties['properties']
+                  | unique: 'group'" >
+               <input name="property-checkbox"
+                      id="property-checkbox"
+                      value="{{property.group}}"
+                      type="checkbox"
+                      inverted />
+               {{ property.group | ucfirst }}
+             </div>
+           </label>
       </div>
     </div>
 
-    <div class="search-box col-md-offset-1 col-md-5">
-      <label for="Search">Search: </label>
-      <input type="text" value="Search" name="Search" ng-model="searchText" >
-    </div>
-
-
-    <div>
-      <p class="klass-description">When certain runes are placed in the correct order into socketed items, they can make Runewords.
-      <br>Try sorting by your highest level rune.</p>
+    <div class="klass-description col-md-12">
+      <p>
+      When certain runes are placed in the correct order into socketed items, they can make Runewords.
+      </p>
+      <p>
+      Try sorting by your highest level rune.
+      </p>
     </div>
 
     <div class="klass-list">
       <ul class="klass-listing col-md-12">
         <li class="klass-list-item col-md-offset-1 col-md-5"
-            ng-repeat="runeword in runewords.all['runewords'] | filter:searchText | filter:runewords.itemTypeSelect" >
+            ng-repeat="runeword in runewords.all['runewords']
+            | filter:searchText
+            | filter:runewords.itemTypeSelect" >
             <h5>Runeword name: {{ runeword["name"] }}</h5>
             <p>Item Types:</p>
             <ul ng-repeat="item in runeword['item_types']">
               <li>{{ item.name }}</li>
             </ul>
-            <div
-                ng-mouseEnter="runewords.selectId(runeword.id)"
-                ng-mouseleave="runewords.clearId()">
-              <h5 ng-hide="runewords.isSelected(runeword.id)">Runeword runes:</h5>
-              <ul ng-hide="runewords.isSelected(runeword.id)" ng-repeat="rune in runeword.runes">
-                <li>{{ rune.name }}</li>
+            <div ng-mouseEnter="runewords.selectId(runeword.id)"
+                 ng-mouseleave="runewords.clearId()">
+              <h5 ng-hide="runewords.isSelected(runeword.id)">
+                Runeword runes:
+              </h5>
+              <ul ng-hide="runewords.isSelected(runeword.id)"
+                  ng-repeat="rune in runeword.runes">
+                <li>
+                  {{ rune.name }}
+                </li>
               </ul>
-              <h5 ng-show="runewords.isSelected(runeword.id)">Runeword properties:</h5>
-              <ul ng-show="runewords.isSelected(runeword.id)" ng-repeat="prop in runeword.properties">
-                <li>{{ prop.name }}</li>
+              <h5 ng-show="runewords.isSelected(runeword.id)">
+                Runeword properties:
+              </h5>
+              <ul ng-show="runewords.isSelected(runeword.id)"
+                  ng-repeat="prop in runeword.properties">
+                <li>
+                  {{ prop.name }}
+                </li>
               </ul>
             </div>
-    </div>
         </li>
       </ul>
-</div>
+    </div>
+  </div>
 </div>
 </div>
