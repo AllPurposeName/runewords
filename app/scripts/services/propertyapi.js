@@ -10,6 +10,6 @@
 var apiBaseUrl = 'http://runewords-api.herokuapp.com/api/v1/';
 
 angular.module('runewordsApp')
-.factory('PropertyAPI', function () {
+.factory('PropertyAPI', function ($resource) {
   return $resource(apiBaseUrl + 'properties');
 });

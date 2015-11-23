@@ -10,13 +10,20 @@
 angular.module('runewordsApp')
 .controller('RunewordsCtrl', ['RunewordsAPI',
                               'ItemTypeAPI',
-            function (RunewordsAPI, ItemTypeAPI) {
-  var vm = this;
-  vm.name = 'Runewords';
-  vm.currentId = null;
-  vm.all = RunewordsAPI.get();
-  vm.itemTypes = ItemTypeAPI.get();
-  vm.itemType = 'All item types';
+                              'PropertyAPI',
+            function (RunewordsAPI, ItemTypeAPI, PropertyAPI) {
+  // object setup
+  var vm            = this;
+  vm.name           = 'Runewords';
+
+  // API calls
+  vm.all            = RunewordsAPI.get();
+  vm.itemTypes      = ItemTypeAPI.get();
+  vm.properties     = PropertyAPI.get();
+
+  // View logic
+  vm.currentId      = null;
+  vm.itemType       = 'All item types';
   vm.itemTypeSelect = '';
 
   vm.setItemType = function(type) {

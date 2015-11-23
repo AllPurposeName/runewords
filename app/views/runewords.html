@@ -9,7 +9,8 @@
 
       <div class="item-type-dropdown col-md-offset-1 col-md-5">
         <div class="dropdown">
-          <label for="item-type-box">Sort by item types:
+          <label for="item-type-box">
+            Sort by item types:
             <select name="item-type-box"
                     id="item-type-box"
                     size="1"
@@ -27,7 +28,8 @@
       </div>
 
       <div class="search-box col-md-offset-1 col-md-5">
-        <label for="Search">Search:
+        <label for="Search">
+          Search:
           <input type="text"
                  value="Search"
                  name="Search"
@@ -35,14 +37,19 @@
         </label>
       </div>
 
-      <div class="property-category-checkboxes col-md-offset-1 col-md-5">
-        <label for="property-checkbox">Select properties:</label>
-        <input name="property-checkbox"
-               id="property-checkbox"
-               type="checkbox"
-               ng-repeat="category in runewords.all['runewords']"
-               ng-model='types.double_suite'
-               inverted />
+      <div class="property-category-checkboxes col-md-offset-1 col-md-5"
+           >
+
+           <label for="property-checkbox" >
+             Select properties:
+             <input name="property-checkbox"
+                    id="property-checkbox"
+                    type="checkbox"
+                    ng-model='runewords.categories'
+                    ng-repeat="property in runewords.properties['properties']
+                    | uniqueFilter:'category'"
+                    inverted />
+           </label>
       </div>
     </div>
 
