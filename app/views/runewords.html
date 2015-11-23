@@ -35,6 +35,15 @@
         </label>
       </div>
 
+      <div class="property-category-checkboxes col-md-offset-1 col-md-5">
+        <label for="property-checkbox">Select properties:</label>
+        <input name="property-checkbox"
+               id="property-checkbox"
+               type="checkbox"
+               ng-repeat="category in runewords.all['runewords']"
+               ng-model='types.double_suite'
+               inverted />
+      </div>
     </div>
 
     <div class="klass-description col-md-12">
