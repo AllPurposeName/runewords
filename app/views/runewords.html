@@ -14,7 +14,7 @@
             <select name="item-type-box"
                     id="item-type-box"
                     size="1"
-                    ng-model="runewords.itemTypeSelect">
+                    ng-model="runewords.filterTypes.itemType">
               <option value="">
               All item types
               </option>
@@ -37,22 +37,29 @@
         </label>
       </div>
 
-      <div class="property-category-checkboxes col-md-offset-1 col-md-5"
-           >
-
-           <label for="property-checkbox" >
-             Select properties:
-             <div ng-model='runewords.categories'
-                  ng-repeat="property in runewords.properties['properties']
-                  | unique: 'group'" >
-               <input name="property-checkbox"
-                      id="property-checkbox"
-                      value="{{property.group}}"
-                      type="checkbox"
+      <div class="property-category-checkboxes col-md-offset-1 col-md-5" >
+        Select properties:
+        <label for="property-default">
+          <input name="property-radio-button"
+                 id="property-radio-button"
+                 value=""
+                 type="radio"
+                 ng-model="runewords.filterTypes.property"
+                 inverted />
+          All Properties
+        </label>
+        <label for="property-radio"
+               ng-repeat="property in runewords.properties['properties']
+               | unique: 'group'" >
+               <input name="property-radio-button"
+                      id="property-radio-button"
+                      value="{{ property.group }}"
+                      type="radio"
+                      ng-model="runewords.filterTypes.property"
                       inverted />
                {{ property.group | ucfirst }}
-             </div>
-           </label>
+               <br>
+        </label>
       </div>
     </div>
 
@@ -67,13 +74,15 @@
 
     <div class="klass-list">
       <ul class="klass-listing col-md-12">
-        <li class="klass-list-item col-md-offset-1 col-md-5"
+        <li class="klass-list-item runeword col-md-offset-1 col-md-5"
             ng-repeat="runeword in runewords.all['runewords']
             | filter:searchText
-            | filter:runewords.itemTypeSelect" >
+            | filter:runewords.filterTypes.itemType
+            | filter:runewords.filterTypes.property" >
             <h5>Runeword name: {{ runeword["name"] }}</h5>
             <p>Item Types:</p>
-            <ul ng-repeat="item in runeword['item_types']">
+            <ul class="runeword-body"
+                ng-repeat="item in runeword['item_types']">
               <li>{{ item.name }}</li>
             </ul>
             <div ng-mouseEnter="runewords.selectId(runeword.id)"
@@ -81,7 +90,8 @@
               <h5 ng-hide="runewords.isSelected(runeword.id)">
                 Runeword runes:
               </h5>
-              <ul ng-hide="runewords.isSelected(runeword.id)"
+              <ul class="runeoword-body"
+                  ng-hide="runewords.isSelected(runeword.id)"
                   ng-repeat="rune in runeword.runes">
                 <li>
                   {{ rune.name }}
@@ -90,16 +100,24 @@
               <h5 ng-show="runewords.isSelected(runeword.id)">
                 Runeword properties:
               </h5>
-              <ul ng-show="runewords.isSelected(runeword.id)"
+              <ul class="runeoword-body"
+                  ng-show="runewords.isSelected(runeword.id)"
                   ng-repeat="prop in runeword.properties">
                 <li>
                   {{ prop.name }}
                 </li>
               </ul>
             </div>
+            <div class="flipper">
+              <div class="flipper-arrow">
+              </div>
+            </div>
         </li>
       </ul>
     </div>
   </div>
 </div>
+</div>
+<div class="runewords">
+  hello
 </div>

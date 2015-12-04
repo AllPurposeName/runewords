@@ -23,11 +23,9 @@ angular.module('runewordsApp')
 
   // View logic
   vm.currentId      = null;
-  vm.itemType       = 'All item types';
-  vm.itemTypeSelect = '';
-
-  vm.setItemType = function(type) {
-    vm.itemType = type;
+  vm.filterTypes = {
+    itemType: '',
+    property: ''
   };
 
   vm.isSelected = function(id) {
