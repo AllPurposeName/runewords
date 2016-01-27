@@ -2,7 +2,14 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
-$borderColor: #e5e5e5;
+$backgroundColorPrime: #51747D;
+$backgroundColorLightest: #365C65;
+$backgroundColorLight: #22464F;
+$backgroundColorDark: #133740;
+$backgroundColorDarkest: #06242B;
+$largeText: 28px;
+$primeText: 24px;
+// http://paletton.com/#uid=13n0u0kiMg1bppgfkkvn4cXsd8G
 
 .browsehappy {
   margin: 0.2em 0;
@@ -25,7 +32,6 @@ body {
 
 /* Custom page header */
 .header {
-  border-bottom: 1px solid;
   margin-bottom: 10px;
 
   /* Make the masthead heading the same height as the navigation */
@@ -42,7 +48,6 @@ body {
   text-align: right;
   padding-top: 19px;
   color: #777;
-  border-top: 1px solid #e5e5e5;
 }
 
 .container-narrow > hr {
@@ -52,7 +57,6 @@ body {
 /* Main marketing message and sign up button */
 .jumbotron {
   text-align: center;
-  border-bottom: 1px solid #e5e5e5;
 
   .btn {
     font-size: 21px;
@@ -63,6 +67,7 @@ body {
 /* Supporting marketing content */
 .marketing {
   margin: 40px 0;
+
 
   p + h4 {
     margin-top: 28px;
@@ -88,17 +93,24 @@ body {
   }
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
-    border-bottom: 0;
   }
 }
 
-.klass-page {
+/* container-help */
+
+#runewords {
+  min-width: 85vw;
+  max-width: 85vw;
+  width: 85vw;
+}
+
+/* display */
+.display-page {
   padding-bottom: 14px;
 }
 
-.klass-title {
+.display-title {
   text-align: center;
-  border-bottom: 1px solid $borderColor;
 
   h1 {
     font-size: 30px;
@@ -106,27 +118,65 @@ body {
   }
 }
 
-.klass-description {
+.display-description {
   size: 21px;
   text-align: center;
 }
 
-.klass-list {
+.large-text {
+  font-size: $primeText;
+}
+// 3222ef
+
+body {
+  // other sample backgrounds I liked:
+  // background-image: url(http://www.transparenttextures.com/patterns/paper-1.png);
+  // background-image: url(http://www.transparenttextures.com/patterns/iron-grip.png);
+  // background-image: url(http://www.transparenttextures.com/patterns/brushed-alum.png);
+  background-color: $backgroundColorPrime;
+  background-image: url(http://www.transparenttextures.com/patterns/diagmonds.png);
+  color: #000000;
+  font-family: Papyrus;
+  font-size: $primeText;
 }
 
-.klass-listing {
-  display: block;
-  border: 1px;
-  color: blue;
+.runeword-table {
+  background-color: $backgroundColorDarkest;
+  padding-bottom: 20px;
 }
 
-.klass-listing {
-  display: block;
-  border: 1px;
-  color: blue;
+.runeword-table-header {
+  background-color: $backgroundColorPrime;
 }
 
-.klass-list-item {
-  min-height: 375px;
-  max-height: 375px;
+.table-striped {
+  > tbody > tr:nth-of-type(odd) {
+    background-color: $backgroundColorLight;
+  }
+}
+
+.table-striped {
+  > tbody > tr:nth-of-type(even) {
+    background-color: $backgroundColorLightest;
+  }
+}
+// Bootstrap $table-border-color;
+
+.search {
+  background-color: $backgroundColorLightest;
+  border-color: $backgroundColorLight;
+}
+
+#item-type-box {
+  background-color: $backgroundColorLightest;
+  border-color: $backgroundColorLight;
+}
+
+.navbar {
+  background-color: $backgroundColorLight;
+  border-color: $backgroundColorPrime;
+}
+
+.navbar-collapse {
+  background-color: $backgroundColorLightest;
 }

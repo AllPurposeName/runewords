@@ -1,76 +1,76 @@
-<div class="container">
-<div class="klass-page">
-  <div class="klass-title">
-    <h1>{{ runewords.name }}</h1>
-  </div>
-  <div class="klass-body col-md-12">
+<div class="container" id="runewords">
+  <div class="display-page">
+    <div class="display-title">
+      <h1>{{ runewords.name }}</h1>
+    </div>
+    <div class="display-body col-md-12">
 
-    <div class="klass-filtering">
+      <div class="display-filtering">
 
-      <div class="item-type-dropdown col-md-offset-1 col-md-5">
-        <div class="dropdown">
-          <label for="item-type-box">
-            Sort by item types:
-            <select name="item-type-box"
-                    id="item-type-box"
-                    size="1"
-                    ng-model="runewords.filterTypes.itemType">
-              <option value="">
-              All item types
-              </option>
-              <option ng-repeat="itemType in runewords.itemTypes['item_types']"
-                      value="{{ itemType.name }}">
-              {{ itemType.name }}
-              </option>
-            </select>
+
+        <div class="search-box col-md-offset-1 col-md-5">
+          <label for="Search">
+            Search:
+            <input type="text"
+                   value="Search"
+                   name="Search"
+                   class="search"
+                   ng-model="searchText">
+          </label>
+        </div>
+
+        <div class="item-type-dropdown col-md-offset-1 col-md-5">
+          <div class="dropdown">
+            <label for="item-type-box">
+              Sort by item types:
+              <select name="item-type-box"
+                      id="item-type-box"
+                      size="1"
+                      ng-model="runewords.filterTypes.itemType">
+                <option value="">
+                All item types
+                </option>
+                <option ng-repeat="itemType in runewords.itemTypes['item_types']"
+                        value="{{ itemType.name }}">
+                {{ itemType.name }}
+                </option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="property-category-checkboxes col-md-offset-5 col-md-7" >
+          <p>Select properties:</p>
+          <label for="property-radio"
+                 ng-repeat="property in runewords.properties['properties']
+                 | unique: 'group'" >
+                 <div>
+                 <input name="property-radio-button"
+                        id="property-radio-button"
+                        value="{{ property.group }}"
+                        type="radio"
+                        ng-model="runewords.filterTypes.property"
+
+                        inverted />
+                 <div class="inline-list" ng-if="$first">
+                   All Properties
+                 </div>
+            <div class="inline-list" ng-if="!$first">
+              {{ property.group | ucfirst }}
+            </div>
+            <br>
           </label>
         </div>
       </div>
 
-      <div class="search-box col-md-offset-1 col-md-5">
-        <label for="Search">
-          Search:
-          <input type="text"
-                 value="Search"
-                 name="Search"
-                 ng-model="searchText">
-        </label>
-      </div>
-
-      <div class="property-category-checkboxes col-md-offset-1 col-md-5" >
-        Select properties:
-        <label for="property-default">
-          <input name="property-radio-button"
-                 id="property-radio-button"
-                 value=""
-                 type="radio"
-                 ng-model="runewords.filterTypes.property"
-                 inverted />
-          All Properties
-        </label>
-        <label for="property-radio"
-               ng-repeat="property in runewords.properties['properties']
-               | unique: 'group'" >
-               <input name="property-radio-button"
-                      id="property-radio-button"
-                      value="{{ property.group }}"
-                      type="radio"
-                      ng-model="runewords.filterTypes.property"
-                      inverted />
-               {{ property.group | ucfirst }}
-               <br>
-        </label>
-      </div>
-    </div>
-
-    <div class="klass-description col-md-12">
-      <p>
-      When certain runes are placed in the correct order into socketed items, they can make Runewords.
-      </p>
-      <p>
-      Try sorting by your highest level rune.
-      </p>
-    </div>
+      <!-- <div class="display&#45;description col&#45;md&#45;12"> -->
+      <!--   <p> -->
+      <!--   When certain runes are placed in the correct order into socketed items, they can make Runewords. -->
+      <!--   </p> -->
+      <!--   <p> -->
+      <!--   Try sorting by your highest level rune. -->
+      <!--   </p> -->
+      <!-- </div> -->
 
       <div class="row col-md-12 runeword-table panel">
         <div class= panel-heading>
