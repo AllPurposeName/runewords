@@ -1,0 +1,57 @@
+// $runeword-tile-one: url(http://runewords-api.herokuapp.com/api/v1/images/runeword_tile_one.png);
+// $runeword-tile-two: url(http://runewords-api.herokuapp.com/api/v1/images/runeword_tile_two.png);
+$runeword-tile-one: url(http://www.transparenttextures.com/patterns/mooning.png);
+$runeword-tile-two: url(http://www.transparenttextures.com/patterns/rocky-wall.png);
+/* table */
+.table-responsive {
+  overflow-x: auto;
+}
+
+/* striped colors */
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+  background-color: #F3F3F3;
+  background-image: $runeword-tile-one;
+  background-clip: border;
+  background-repeat: repeat;
+}
+
+.table-striped>tbody>tr:nth-child(even)>td,
+.table-striped>tbody>tr:nth-child(even)>th {
+  background-color: #C6C6C6;
+  background-image: $runeword-tile-one;
+}
+/* striped colors */
+
+/* runeword listing */
+.runeword-list {
+  font-family: Papyrus;
+  font-size: 16px;
+  color: #000000;
+  line-height: 31px;
+  background-color: #C6C6C6;
+  background-image: $runeword-tile-one;
+}
+
+.runeword-name {
+  color: #4a3a0c;
+  font-weight: 900;
+}
+
+.inline-list {
+  display: inline-block;
+}
+/* runeword listing */
+
+/* search filters */
+.property-category-checkboxes {
+  float: right;
+  display: flex;
+
+  p {
+    font-weight: bold;
+    margin-bottom: 5px;
+  display: flex;
+  }
+}
+

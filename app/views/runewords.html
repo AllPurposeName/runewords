@@ -1,123 +1,131 @@
-<div class="container">
-<div class="klass-page">
-  <div class="klass-title">
-    <h1>{{ runewords.name }}</h1>
-  </div>
-  <div class="klass-body col-md-12">
+<div class="container" id="runewords">
+  <div class="display-page">
+    <div class="display-title">
+      <h1>{{ runewords.name }}</h1>
+    </div>
+    <div class="display-body col-md-12">
 
-    <div class="klass-filtering">
+      <div class="display-filtering">
 
-      <div class="item-type-dropdown col-md-offset-1 col-md-5">
-        <div class="dropdown">
-          <label for="item-type-box">
-            Sort by item types:
-            <select name="item-type-box"
-                    id="item-type-box"
-                    size="1"
-                    ng-model="runewords.filterTypes.itemType">
-              <option value="">
-              All item types
-              </option>
-              <option ng-repeat="itemType in runewords.itemTypes['item_types']"
-                      value="{{ itemType.name }}">
-              {{ itemType.name }}
-              </option>
-            </select>
+
+        <div class="search-box col-md-offset-1 col-md-5">
+          <label for="Search">
+            Search:
+            <input type="text"
+                   value="Search"
+                   name="Search"
+                   class="search"
+                   ng-model="searchText">
+          </label>
+        </div>
+
+        <div class="item-type-dropdown col-md-offset-1 col-md-5">
+          <div class="dropdown">
+            <label for="item-type-box">
+              Sort by item types:
+              <select name="item-type-box"
+                      id="item-type-box"
+                      size="1"
+                      ng-model="runewords.filterTypes.itemType">
+                <option value="">
+                All item types
+                </option>
+                <option ng-repeat="itemType in runewords.itemTypes['item_types']"
+                        value="{{ itemType.name }}">
+                {{ itemType.name }}
+                </option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="property-category-checkboxes col-md-offset-5 col-md-7" >
+          <p>Select properties:</p>
+          <label for="property-radio"
+                 ng-repeat="property in runewords.properties['properties']
+                 | unique: 'group'" >
+                 <div>
+                 <input name="property-radio-button"
+                        id="property-radio-button"
+                        value="{{ property.group }}"
+                        type="radio"
+                        ng-model="runewords.filterTypes.property"
+
+                        inverted />
+                 <div class="inline-list" ng-if="$first">
+                   All Properties
+                 </div>
+            <div class="inline-list" ng-if="!$first">
+              {{ property.group | ucfirst }}
+            </div>
+            <br>
           </label>
         </div>
       </div>
 
-      <div class="search-box col-md-offset-1 col-md-5">
-        <label for="Search">
-          Search:
-          <input type="text"
-                 value="Search"
-                 name="Search"
-                 ng-model="searchText">
-        </label>
-      </div>
+      <!-- <div class="display&#45;description col&#45;md&#45;12"> -->
+      <!--   <p> -->
+      <!--   When certain runes are placed in the correct order into socketed items, they can make Runewords. -->
+      <!--   </p> -->
+      <!--   <p> -->
+      <!--   Try sorting by your highest level rune. -->
+      <!--   </p> -->
+      <!-- </div> -->
 
-      <div class="property-category-checkboxes col-md-offset-1 col-md-5" >
-        Select properties:
-        <label for="property-default">
-          <input name="property-radio-button"
-                 id="property-radio-button"
-                 value=""
-                 type="radio"
-                 ng-model="runewords.filterTypes.property"
-                 inverted />
-          All Properties
-        </label>
-        <label for="property-radio"
-               ng-repeat="property in runewords.properties['properties']
-               | unique: 'group'" >
-               <input name="property-radio-button"
-                      id="property-radio-button"
-                      value="{{ property.group }}"
-                      type="radio"
-                      ng-model="runewords.filterTypes.property"
-                      inverted />
-               {{ property.group | ucfirst }}
-               <br>
-        </label>
-      </div>
-    </div>
-
-    <div class="klass-description col-md-12">
-      <p>
-      When certain runes are placed in the correct order into socketed items, they can make Runewords.
-      </p>
-      <p>
-      Try sorting by your highest level rune.
-      </p>
-    </div>
-
-    <div class="klass-list">
-      <ul class="klass-listing col-md-12">
-        <li class="klass-list-item runeword col-md-offset-1 col-md-5"
-            ng-repeat="runeword in runewords.all['runewords']
-            | filter:searchText
-            | filter:runewords.filterTypes.itemType
-            | filter:runewords.filterTypes.property" >
-            <h5>Runeword name: {{ runeword["name"] }}</h5>
-            <p>Item Types:</p>
-            <ul class="runeword-body"
-                ng-repeat="item in runeword['item_types']">
-              <li>{{ item.name }}</li>
-            </ul>
-            <div ng-mouseEnter="runewords.selectId(runeword.id)"
-                 ng-mouseleave="runewords.clearId()">
-              <h5 ng-hide="runewords.isSelected(runeword.id)">
-                Runeword runes:
-              </h5>
-              <ul class="runeoword-body"
-                  ng-hide="runewords.isSelected(runeword.id)"
-                  ng-repeat="rune in runeword.runes">
-                <li>
-                  {{ rune.name }}
-                </li>
-              </ul>
-              <h5 ng-show="runewords.isSelected(runeword.id)">
-                Runeword properties:
-              </h5>
-              <ul class="runeoword-body"
-                  ng-show="runewords.isSelected(runeword.id)"
-                  ng-repeat="prop in runeword.properties">
-                <li>
-                  {{ prop.name }}
-                </li>
-              </ul>
-            </div>
-            <div class="flipper">
-              <div class="flipper-arrow">
-              </div>
-            </div>
-        </li>
-      </ul>
+      <div class="row col-md-12 runeword-table panel">
+        <div class= panel-heading>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-striped runeword-list">
+            <thead class="runeword-table-header">
+              <tr>
+                <th>Runeword</th>
+                <th>Character Level</th>
+                <th>Item Types</th>
+                <th>Runes</th>
+                <th>Properties</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                   ng-repeat="runeword in runewords.all['runewords']
+                   | filter:searchText
+                   | filter:runewords.filterTypes.itemType
+                   | filter:runewords.filterTypes.property" >
+                   <td class="runeword-name">{{ runeword['name'] }}</td>
+                   <td>{{ runeword['character_level'] }}</td>
+                   <td>
+                     <div class="inline-list" ng-repeat="item in runeword['item_types']">
+                       <div class="inline-list" ng-if="!$last">
+                         {{ item.name }},
+                       </div>
+                       <div class="inline-list" ng-if="$last">
+                         {{ item.name }}
+                       </div>
+                     </div>
+                     <div style="display: block;">
+                       with {{ runeword.runes.length }} sockets
+                     </div>
+                   </td>
+                   <td>
+                     <div class="inline-list" ng-repeat="rune in runeword.runes">
+                       {{ rune.name }}
+                       <div class="inline-list"
+                            ng-if="!$last"> <!-- add a " +" if not last in list -->
+                            +
+                       </div>
+                     </div>
+                   </td>
+                   <td>
+                     <div ng-repeat="prop in runeword.properties">
+                       {{ prop.name }}
+                     </div>
+                   </td>
+              </tr>
+            </tbody>
+          </table>
+        </div> <!-- table-responsive -->
+      </div> <!-- row -->
     </div>
   </div>
-</div>
-</div>
-<div class="runewords">
-  hello
 </div>
