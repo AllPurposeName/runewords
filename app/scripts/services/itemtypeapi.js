@@ -7,7 +7,7 @@
  * # ItemTypeAPI
  * Factory in the runewordsApp.
  */
-var apiBaseUrl = 'http://runewords-api.herokuapp.com/api/v1/';
+var apiBaseUrl = 'https://runewords-api.herokuapp.com/api/v1/';
 
 angular.module('runewordsApp')
   .factory('ItemTypeAPI', function ($resource) {
