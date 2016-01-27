@@ -9,6 +9,8 @@ $backgroundColorDark: #133740;
 $backgroundColorDarkest: #06242B;
 $largeText: 28px;
 $primeText: 24px;
+$textColor: #000000;
+$navTextColor: #777;
 // http://paletton.com/#uid=13n0u0kiMg1bppgfkkvn4cXsd8G
 
 .browsehappy {
@@ -177,6 +179,9 @@ body {
   border-color: $backgroundColorPrime;
 }
 
-.navbar-collapse {
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
   background-color: $backgroundColorLightest;
+  color: $navTextColor;
 }
